@@ -26,15 +26,9 @@ const addRestaurant = (payload: Restaurant) => {
   hideForm()
 }
 
-// const deleteRestaurant = (payload: Restaurant) => {
-//   restaurantList.value = restaurantList.value.filter((restaurant) => {
-//     return restaurant.id !== payload.name
-//   })
-// }
-
-// const numberOfRestaurants = computed((): number => {
-//   return filteredRestaurantList.value.length
-// })
+const numberOfRestaurants = computed((): number => {
+  return filteredRestaurantList.value.length
+})
 
 /**
  * New Form Module
@@ -99,7 +93,7 @@ onMounted(() => {
         <!-- Display Results -->
         <div v-else class="columns is-multiline">
           <div v-for="item in filteredRestaurantList" class="column is-full" :key="`item-${item}`">
-            <RestaurantCard :restaurant="item" @delete-restaurant="deleteRestaurant" />
+            <RestaurantCard :restaurant="item" @delete-restaurant="restaurantStore.deleteRestaurant(item)" />
           </div>
         </div>
       </div>
