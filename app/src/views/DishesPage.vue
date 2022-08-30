@@ -44,6 +44,7 @@ const addDish = (payload: Dish) => {
   dishList.value.push(payload)
   hideForm()
 }
+
 const deleteDish = (payload: Dish) => {
   dishList.value = dishList.value.filter((dish: Dish) => {
     return dish.id !== payload.id
@@ -51,6 +52,10 @@ const deleteDish = (payload: Dish) => {
 }
 const hideForm = () => {
   showNewForm.value = false
+}
+
+const updateFilterText = (event: KeyboardEvent) => {
+  filterText.value = (event.target as HTMLInputElement).value
 }
 
 onMounted(() => {
@@ -87,7 +92,13 @@ onMounted(() => {
             <div class="level-item is-hidden-tablet-only">
               <div class="field has-addons">
                 <p class="control">
-                  <input class="input" type="text" placeholder="Dish name" v-model="filterText" />
+                  <input
+                    class="input"
+                    type="text"
+                    placeholder="Dish name"
+                    :value="filterText"
+                    @keyup.enter="updateFilterText"
+                  />
                 </p>
                 <p class="control">
                   <button class="button">Search</button>
