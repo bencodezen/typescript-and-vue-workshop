@@ -1,17 +1,24 @@
-<script>
-import { defineComponent, ref } from 'vue'
+<script setup lang="ts">
+import { onMounted, ref } from 'vue'
 import { v4 as uuidv4 } from 'uuid'
+import type { Dish } from '@/types'
 
-export default defineComponent({
-  emits: ['add-new-dish', 'cancel-new-dish'],
-  data: () => ({
-    newDish: {
-      id: uuidv4(),
-      name: '',
-      status: 'Want to Try',
-      diet: '',
-    },
-  }),
+const emits = defineEmits<{
+  (e: 'add-new-dish', dish: Dish): void
+  (e: 'cancel-new-dish'): void
+}>()
+
+const newDish = ref<Dish>({
+  id: uuidv4(),
+  name: '',
+  status: 'Want to Try',
+  diet: '',
+})
+
+const elDishNameInput = ref<HTMLInputElement | null>(null)
+
+onMounted(() => {
+  elDishNameInput.value?.focus()
 })
 </script>
 
@@ -27,7 +34,7 @@ export default defineComponent({
             class="input is-large"
             placeholder="Mystery Flavored Shrimp"
             required
-            ref="elNameInput"
+            ref="elDishNameInput"
           />
         </div>
       </div>
