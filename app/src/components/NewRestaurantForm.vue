@@ -1,13 +1,16 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { v4 as uuidv4 } from 'uuid'
 import { restaurantStatusList } from '@/constants'
 import type { Restaurant } from '@/types'
+import { looseIndexOf } from '@vue/shared'
 
 const emit = defineEmits<{
   (e: 'add-new-restaurant', restaurant: Restaurant): void
   (e: 'cancel-new-restaurant'): void
 }>()
+
+const elNameInput = ref<HTMLInputElement | null>(null)
 
 const newRestaurant = ref<Restaurant>({
   id: uuidv4(),
@@ -24,6 +27,10 @@ const addRestaurant = () => {
 const cancelNewRestaurant = () => {
   emit('cancel-new-restaurant')
 }
+
+onMounted(() => {
+  elNameInput.value?.focus()
+})
 </script>
 
 <template>
@@ -33,8 +40,7 @@ const cancelNewRestaurant = () => {
         <label for="name" class="label">Name</label>
         <div class="control">
           <input
-            :value="newRestaurant.name"
-            @keyup.space="updateName"
+            v-model="newRestaurant.name"
             type="text"
             class="input is-large"
             placeholder="Beignet and the Jets"
