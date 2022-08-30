@@ -46,7 +46,7 @@ export default defineComponent({
   }),
   computed: {
     filteredRestaurantList(): Restaurant[] {
-      return this.restaurantList.filter((restaurant: Restaurant) => {
+      return this.restaurantList.filter((restaurant) => {
         if (restaurant.name) {
           return restaurant.name.toLowerCase().includes(this.filterText.toLowerCase())
         } else {
