@@ -1,4 +1,4 @@
-import { restaurantStatusList } from '@/constants'
+import type { restaurantStatusList } from '@/constants'
 
 export type Dish = {
   id: string
