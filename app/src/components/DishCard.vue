@@ -44,6 +44,7 @@ const deleteDish = () => {
           <span class="tag" :class="statusColor">{{ dish.status }}</span>
         </p>
         <div>
+          <button class="button is-small is-warning is-light">Edit</button>
           <button @click="deleteDish" class="button is-small is-danger is-light">Delete</button>
         </div>
       </div>
