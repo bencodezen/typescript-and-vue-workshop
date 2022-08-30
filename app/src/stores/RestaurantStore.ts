@@ -42,7 +42,7 @@ export const useRestaurantStore = defineStore('RestaurantStore', {
     },
     deleteRestaurant(payload: Restaurant) {
       this.list = this.list.filter((restaurant: Restaurant) => {
-        return restaurant.id !== payload.name
+        return restaurant.id !== payload.id
       })
     }
   },
