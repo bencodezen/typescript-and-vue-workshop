@@ -5,33 +5,20 @@ import DishCard from '../components/DishCard.vue'
 import SideMenu from '../components/SideMenu.vue'
 import type { Dish } from '@/types'
 import { useRoute } from 'vue-router'
+import { useDishStore } from '@/stores/DishStore'
 
 const filterText = ref('')
-const dishList = ref<Dish[]>([
-  {
-    id: '7d9f3f17-964a-4e82-98e5-ecbba4d709a1',
-    name: 'Ghost Pepper Poppers',
-    status: 'Want to Try',
-  },
-  {
-    id: '5c986b74-fa02-4a22-98f2-b1ff3559e85e',
-    name: 'A Little More Chowder Now',
-    status: 'Recommended',
-  },
-  {
-    id: 'c113411d-1589-414f-a283-daf7eedb631e',
-    name: 'Full Laptop Battery',
-    status: 'Do Not Recommend',
-  },
-])
 const showNewForm = ref(false)
 
+const dishStore = useDishStore()
+const dishList = dishStore.list
+
 const filteredDishList = computed((): Dish[] => {
-  return dishList.value.filter((dish: Dish) => {
+  return dishList.filter((dish: Dish) => {
     if (dish.name) {
       return dish.name.toLowerCase().includes(filterText.value.toLowerCase())
     } else {
-      return dishList.value
+      return dishList
     }
   })
 })
@@ -41,15 +28,10 @@ const numberOfDishes = computed((): number => {
 })
 
 const addDish = (payload: Dish) => {
-  dishList.value.push(payload)
+  dishStore.addDish(payload)
   hideForm()
 }
 
-const deleteDish = (payload: Dish) => {
-  dishList.value = dishList.value.filter((dish: Dish) => {
-    return dish.id !== payload.id
-  })
-}
 const hideForm = () => {
   showNewForm.value = false
 }
@@ -114,7 +96,7 @@ onMounted(() => {
         <!-- Display Results -->
         <div v-else class="columns is-multiline">
           <div v-for="item in filteredDishList" class="column is-full" :key="`item-${item}`">
-            <DishCard :dish="item" @delete-dish="deleteDish" />
+            <DishCard :dish="item" @delete-dish="dishStore.deleteDish" />
           </div>
         </div>
       </div>
