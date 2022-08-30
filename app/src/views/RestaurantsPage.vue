@@ -16,7 +16,7 @@ export default {
         id: '9f995ce4-d2fc-4d00-af1d-6cb1647c6bd3',
         name: 'Quiche From a Rose',
         address: '283 Thisisnota St.',
-        website: 'www.quichfromarose.com',
+        website: 'www.quichefromarose.com',
         status: 'Want to Try',
       },
       {
