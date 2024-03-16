@@ -4,6 +4,9 @@
   "compilerOptions": {
     "allowJs": true,
     "baseUrl": ".",
+    "verbatimModuleSyntax": true,
+    "importsNotUsedAsValues": "remove",
+    "preserveValueImports": false,
     "paths": {
       "@/*": ["./src/*"]
     }
