@@ -1,6 +1,12 @@
 <script>
 export default {
-  props: ['tagline'],
+  //props can be an array, but an object allows you to define types
+  props: {
+    tagline: {
+      type: [String, Number],
+      default: 'Track everything you want to eat!',
+    },
+  },
   data: () => ({
     navList: [
       {
