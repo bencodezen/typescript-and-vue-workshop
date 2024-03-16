@@ -7,11 +7,16 @@ export default {
     TheNavbar,
     TheFooter,
   },
+  setup: () => ({
+    tagline: 123,
+  }),
 }
 </script>
 
 <template>
-  <TheNavbar />
+  <!-- Can bring in props from components this way too, though not recommended -->
+  <!-- <TheNavbar tagline="Track Everything you Want to Eat!" /> -->
+  <TheNavbar :tagline="tagline" />
   <RouterView />
   <TheFooter />
 </template>
