@@ -8,7 +8,7 @@ export default {
     TheFooter,
   },
   setup: () => ({
-    tagline: 123,
+    tagline: 'Track everything you want to DEVOUR',
   }),
 }
 </script>
