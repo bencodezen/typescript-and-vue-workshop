@@ -1,4 +1,15 @@
 <script>
+/**
+ * Restaurant
+ */
+// {
+//   id: string
+//   name: string
+//   address: string
+//   website: string
+//   status: string
+// }
+
 export default {
   props: {
     restaurant: {
